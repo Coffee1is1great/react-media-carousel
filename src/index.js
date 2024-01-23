@@ -225,7 +225,7 @@ export default function useMediaCarousel(props) {
     // eslint-disable-next-line react/jsx-key
     <Backdrop
       sx={{
-        color: "pink",
+        color: "#fff",
         zIndex: 9999,
         backgroundColor: opacity ? "rgba(0, 0, 0, " + opacity + ")" : "",
       }}
