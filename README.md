@@ -60,3 +60,25 @@ Supported story special characters
 
     \n : Will generate a new line with <br/>,
     &bull; : Will generate a bullet point with &bull; injected into the DOM. 
+
+# Debugging
+
+If you are running Node.js v17 or later, you may encounter some sort of “ERROR in index.js from Terser Error: error:0308010C:digital envelope routines::unsupported” when running “npm run build”. This error is often seen in Node.js v17 and later because they switched to OpenSSL 3, which enforces stricter security policies. Here are a couple of workarounds:
+
+1. **Downgrading to Node.js v16 or Earlier**
+   - Downgrading can resolve this issue because these versions use OpenSSL 1.1.1, which does not have the same restrictions.
+   - **Steps:**
+     - Uninstall your current Node.js.
+     - Install Node.js v16.x from [Node.js Downloads](https://nodejs.org/en/download/).
+     - After installation, verify the version using `node -v`.
+     - Run `npm install` and `npm run build` in your project directory.
+
+2. **Setup an Environment Variable to Allow the Use of Legacy OpenSSL APIs**
+   - **For macOS or Linux:**
+     - Open terminal and run:
+       1. `export NODE_OPTIONS=--openssl-legacy-provider`
+   - **For Windows:**
+     - Open command prompt and run:
+       1. `set NODE_OPTIONS=--openssl-legacy-provider`
+       2. Or in PowerShell run:
+           - `$env:NODE_OPTIONS="--openssl-legacy-provider"`
